@@ -1,0 +1,16 @@
+{
+    "name": "my-ecommerce-site",
+    "version": "1.0.0",
+    "description": "A simple e-commerce site for uploading and displaying products",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "body-parser": "^1.20.3",
+        "express": "^4.21.0",
+        "multer": "^1.4.5-lts.1"
+    },
+    "author": "",
+    "license": "ISC"
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload New Product</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #2c2c2c;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="text"], input[type="url"], input[type="file"], select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #444;
+            border-radius: 8px;
+            background-color: #3b3b3b;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus, input[type="url"]:focus, input[type="file"]:focus, select:focus {
+            border-color: #7f8d9e;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #000;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #7f8d9e;
+            color: #ffffff;
+        }
+
+        .image-option {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .image-option input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .image-option label {
+            font-size: 16px;
+        }
+
+        .link-input {
+            display: none;
+        }
+
+        .link-input input {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Upload a New Product</h1>
+
+    <form id="uploadForm" action="/uploadProduct" method="POST">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="name" placeholder="Enter product name" required>
+
+        <label for="productImage">Product Image:</label>
+        <div class="image-option">
+            <label><input type="radio" name="imageOption" value="gallery" checked> Upload from Gallery</label>
+            <label><input type="radio" name="imageOption" value="link"> Paste Image Link</label>
+        </div>
+
+        <input type="file" id="productImage" accept="image/*" name="image">
+        <div class="link-input" id="linkInput">
+            <label for="imageLink">Paste Image URL:</label>
+            <input type="url" id="imageLink" name="imageLink" placeholder="Paste image URL">
+        </div>
+
+        <label for="productLink">Amazon Link:</label>
+        <input type="url" id="productLink" name="link" placeholder="Enter product link" required>
+
+        <button type="submit" class="btn">Upload Product</button>
+    </form>
+</div>
+
+<script>
+    const imageOptions = document.querySelectorAll('input[name="imageOption"]');
+    const fileInput = document.getElementById('productImage');
+    const linkInputContainer = document.getElementById('linkInput');
+    const imageLinkInput = document.getElementById('imageLink');
+
+    // Toggle between file input and link input
+    imageOptions.forEach(option => {
+        option.addEventListener('change', function() {
+            if (this.value === 'link') {
+                fileInput.style.display = 'none';
+                fileInput.removeAttribute('required');
+                linkInputContainer.style.display = 'block';
+            } else {
+                fileInput.style.display = 'block';
+                fileInput.setAttribute('required', true);
+                linkInputContainer.style.display = 'none';
+            }
+        });
+    });
+
+    // Handle form submission
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        // If the "Paste Image Link" is selected but no link is provided
+        if (imageOptions[1].checked && !imageLinkInput.value) {
+            alert('Please provide an image link.');
+            event.preventDefault();  // Prevent form submission
+        } else if (imageOptions[0].checked && !fileInput.value) {
+            // If "Upload from Gallery" is selected but no file is uploaded
+            alert('Please upload an image from the gallery.');
+            event.preventDefault();  // Prevent form submission
+        }
+    });
+</script>
+
+</body>
+</html> 

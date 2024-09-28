@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Buys</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .header img {
+            width: 150px; /* Set a width for the logo */
+            height: 150px; /* Set a height for the logo */
+            border-radius: 50%; /* Makes the logo circular */
+            object-fit: cover; /* Ensures the image covers the area without stretching */
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 18px;
+            font-weight: 400;
+            margin: 10px 0;
+        }
+
+        .search-bar {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            border-radius: 5px;
+            width: 300px;
+            border: none;
+            font-size: 16px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .product-item {
+            background-color: #ffffff;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            color: #000;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            border-radius: 5px;
+            height: auto;
+        }
+
+        .product-item p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        /* Remove blue underlined links for product names */
+        a {
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Inherit text color */
+        }
+
+        a:hover {
+            color: #7f8d9e; /* Hover effect */
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="/images/meet-buys-logo.png" alt="Meet Buys Logo"> <!-- Correct image source path -->
+    <h1>Meet Buys</h1>
+    <p>Product Reviews + Amazon Finds 😎🔥</p>
+    <p>zalavadiya000@gmail.com</p>
+    <p>As an affiliate, I earn from qualifying purchases 🙌🏼</p>
+</div>
+
+<div class="search-bar">
+    <input type="text" placeholder="Search for products..." id="searchInput">
+</div>
+
+<div class="product-grid" id="productGrid">
+    <!-- Dynamic product items will be added here -->
+
+    <div class="product-item">
+        <a href="https://amazon.com" target="_blank" rel="noopener">
+            <img alt="Matrix watch " height="200" src="https://m.media-amazon.com/images/I/711NXCmUfbL._SX679_.jpg" width="200"/>
+            <p>Matrix watch </p>
+        </a>
+    </div>
+
+            <div class="product-item">
+                <a href="https://amzn.in/d/bjoExJA" target="_blank" rel="noopener">
+                    <img alt="STYLEDOSE Women Analogue Wrist Watches" height="200" src="https://m.media-amazon.com/images/I/711J1gA9deL._SX679_.jpg" width="200"/>
+                    <p>STYLEDOSE Women Analogue Wrist Watches</p>
+                </a>
+            </div>
+        
+
+            <div class="product-item">
+                <a href="https://amzn.in/ia3DQBb" target="_blank" rel="noopener">
+                    <img alt="Sony PlayStation 5 Digital Edition (slim)" height="200" src="https://m.media-amazon.com/images/I/51afJC92cgL._SL1000_.jpg" width="200"/>
+                    <p>Sony PlayStation 5 Digital Edition (slim)</p>
+                </a>
+            </div>
+        
+
+            <div class="product-item">
+                <a href="https://amzn.in/d/ddbFqi1" target="_blank" rel="noopener">
+                    <img alt="Safari Pentagon Set Trolley Bags Hard Case" height="200" src="https://m.media-amazon.com/images/I/61QJwcthVZL._SL1500_.jpg" width="200"/>
+                    <p>Safari Pentagon Set Trolley Bags Hard Case</p>
+                </a>
+            </div>
+        
+
+            <div class="product-item">
+                <a href="https://amzn.in/d/9nfL9TZ" target="_blank" rel="noopener">
+                    <img alt="Neck Holder Pillow (Grey)" height="200" src="https://m.media-amazon.com/images/I/81fBDyL6+KL._SL1500_.jpg" width="200"/>
+                    <p>Neck Holder Pillow (Grey)</p>
+                </a>
+            </div>
+        
+            <div class="product-item">
+                <a href="https://amzn.in/d/28HrTGq" target="_blank" rel="noopener">
+                    <img alt="Apple iPhone 14 Pro Max (128 GB) - Deep Purple" height="200" src="https://m.media-amazon.com/images/I/71yzJoE7WlL._SL1500_.jpg" width="200"/>
+                    <p>Apple iPhone 14 Pro Max (128 GB) - Deep Purple</p>
+                </a>
+            </div>
+        
+
+            <div class="product-item">
+                <a href="https://amzn.in/d/cU4D1Xu" target="_blank" rel="noopener">
+                    <img alt="Apple iPhone 16 Pro Max (256 GB) - Desert Titanium" height="200" src="https://m.media-amazon.com/images/I/61giwQtR1qL._SL1500_.jpg" width="200"/>
+                    <p>Apple iPhone 16 Pro Max (256 GB) - Desert Titanium</p>
+                </a>
+            </div>
+        
+</div> <!-- Close product-grid div -->
+
+<script>
+    document.getElementById("searchInput").addEventListener("input", function () {
+        const searchTerm = this.value.toLowerCase();
+        const products = document.querySelectorAll(".product-item");
+
+        products.forEach(product => {
+            const productName = product.querySelector("p").textContent.toLowerCase();
+            product.style.display = productName.includes(searchTerm) ? '' : 'none';
+        });
+    });
+</script>
+
+</body>
+</html>
